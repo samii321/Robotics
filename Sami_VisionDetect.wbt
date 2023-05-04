@@ -1,0 +1,284 @@
+#VRML_SIM R2023a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/samples/contests/robocup/protos/RobocupSoccerField.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/balls/protos/SoccerBall.proto"
+
+WorldInfo {
+  info [
+    "Small robot that detects footballs and other obstacles using a camera."
+  ]
+  title "MyBot with a Camera"
+}
+Viewpoint {
+  orientation 0.26483196262320224 0.019050741841740527 -0.9641063742183341 3.0031906177469487
+  position 4.6737329398488905 2.593716905494572 4.310343307400868
+  follow "MyBot"
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RobocupSoccerField {
+  rotation 0 1 0 0
+  size "kid"
+}
+SoccerBall {
+  hidden linearVelocity_0 0 0 -0.0008080630592468762
+  translation 4.675489360422123 1.6703197243534436 0.3085339162486811
+  rotation 0.562684857722783 0.6961332592017621 0.44585225840251586 2.5482756223409915
+  name "soccer ball(3)"
+  radius 0.3
+  mass 1
+}
+SoccerBall {
+  hidden linearVelocity_0 0 0 -0.0008080630592468762
+  translation 1.4669881228844261 -2.6991445650530106 0.3085339162486811
+  rotation -0.13154926787694368 0.709554188916419 0.6922626980505326 3.041501263038087
+  name "soccer ball(2)"
+  radius 0.3
+  mass 1
+}
+SoccerBall {
+  hidden linearVelocity_0 0 0 -0.0008080630592468762
+  translation 1.1241331221369713 0.25320668418100334 0.3085339162486811
+  rotation -0.4388726662971146 -0.049938224201921746 0.8971604965338253 -2.7158370940713605
+  name "soccer ball(1)"
+  radius 0.3
+  mass 1
+}
+Robot {
+  translation -0.8894211706370345 2.5539881433520635 2.96237e-09
+  rotation 2.99554e-11 9.93129e-09 1 6.050218125197836
+  scale 5 5 5
+  children [
+    GPS {
+    }
+    Transform {
+      translation 0 0 0.0415
+      rotation 0 0 1 -1.570796
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.0820075 0.364731 0.8
+            roughness 1
+            metalness 0
+          }
+          geometry DEF BODY Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 34639.539832977585
+        axis 0 1 0
+        anchor 0 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "left wheel motor"
+          maxVelocity 11
+        }
+        PositionSensor {
+          name "left wheel sensor"
+        }
+      ]
+      endPoint Solid {
+        translation 0 0.04499999999999996 0.025
+        rotation 0.033452192163262506 -0.033452236528478466 0.9988803225165241 4.711268935166165
+        children [
+          DEF WHEEL Transform {
+            rotation 0.577656895078166 0.5771968951617173 -0.5771968951617173 -2.093935
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 1 0 0
+                  roughness 1
+                  metalness 0
+                }
+                geometry Cylinder {
+                  height 0.01
+                  radius 0.025
+                }
+              }
+            ]
+          }
+        ]
+        name "left wheel"
+        boundingObject USE WHEEL
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 35041.49806067223
+        axis 0 1 0
+        anchor 0 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "right wheel motor"
+          maxVelocity 11
+        }
+        PositionSensor {
+          name "right wheel sensor"
+        }
+      ]
+      endPoint Solid {
+        translation 0 -0.04499999999999997 0.025
+        rotation 0.14714692911027485 -0.14714692148631714 0.9781081559574665 4.690255672008405
+        children [
+          USE WHEEL
+        ]
+        name "right wheel"
+        boundingObject USE WHEEL
+      }
+    }
+    DistanceSensor {
+      translation 0.042 0.02 0.063
+      rotation 3.38385e-07 7.19235e-09 -1 -0.49920530717958655
+      children [
+        DEF SENSOR Transform {
+          rotation 0.577656895078166 0.5771968951617173 -0.5771968951617173 -2.093935
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.975691 0.981481 0.0252992
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.004
+                radius 0.008
+              }
+            }
+          ]
+        }
+      ]
+      name "ds0"
+      lookupTable [
+        0 1024 0
+        0.05 1024 0
+        0.15 0 0
+      ]
+      numberOfRays 2
+      aperture 1
+    }
+    DistanceSensor {
+      translation 0.042 -0.02 0.063
+      rotation -3.14419e-07 -7.19235e-09 1 -0.5007953071795859
+      children [
+        USE SENSOR
+      ]
+      name "ds1"
+      lookupTable [
+        0 1024 0
+        0.05 1024 0
+        0.15 0 0
+      ]
+      numberOfRays 2
+      aperture 1
+    }
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.8 0.8 0.8
+        baseColorMap ImageTexture {
+          url [
+            "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/samples/mybot/worlds/textures/mybot.png"
+          ]
+        }
+        roughness 0.5
+        metalness 0
+      }
+      geometry IndexedFaceSet {
+        coord Coordinate {
+          point [
+            0.041 -0.015 0.038
+            0.041 -0.015 0.023
+            0.0455 0 0.023
+            0.041 0.015 0.023
+            0.041 0.015 0.038
+            0.0455 0 0.038
+          ]
+        }
+        texCoord TextureCoordinate {
+          point [
+            0 0
+            0.5 0
+            1 0
+            1 1
+            0.5 1
+            0 1
+          ]
+        }
+        coordIndex [
+          0, 1, 2, 5, -1, 5, 2, 3, 4, -1
+        ]
+        texCoordIndex [
+          5, 0, 1, 4, -1, 4, 1, 2, 3, -1
+        ]
+        creaseAngle 0.9
+      }
+    }
+    Camera {
+      translation 0.04 0 0.0915
+      scale 2 2 2
+      children [
+        Transform {
+          translation -0.015 0 0
+          rotation 0 -1 0 1.57
+          children [
+            Shape {
+              appearance PBRAppearance {
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.03
+                radius 0.01
+              }
+            }
+          ]
+        }
+      ]
+      fieldOfView 1.047
+      width 80
+      height 60
+      recognition Recognition {
+      }
+    }
+  ]
+  name "MyBot"
+  boundingObject Transform {
+    translation 0 0 0.0415
+    rotation 0 0 1 -1.570796
+    children [
+      USE BODY
+    ]
+  }
+  recognitionColors [
+    1 0 0
+  ]
+  controller "mybot_camera"
+  controllerArgs [
+    ""
+  ]
+  battery [
+    0
+  ]
+}
+RectangleArena {
+  floorSize 10 6
+  wallHeight 0.5
+}
+SoccerBall {
+  hidden linearVelocity_0 0 0 -0.0008080630592468762
+  translation 0.7305279333536041 2.623644673789631 0.3085339162486811
+  rotation -0.9767370999586844 -0.1640866944060032 -0.13805866247074042 0.7767460238545097
+  radius 0.3
+  mass 1
+}
